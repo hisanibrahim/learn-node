@@ -7,20 +7,25 @@
 GET {{host}}/api/courses HTTP/1.1
 
 ###
-GET {{host}}/api/courses/15 HTTP/1.1
+GET {{host}}/api/courses/1 HTTP/1.1
 
 ###
 POST {{host}}/api/courses HTTP/1.1
 content-type: application/json
 
 {
-    "name": "sadc"
+    "name": "sa"
 }
 
 ###
-PUT {{host}}/api/courses/1 HTTP/1.1
+PUT {{host}}/api/courses/2 HTTP/1.1
 content-type: application/json
 
 {
-    "name": "sa2"
+    "name": "ne"
 }
+
+
+###
+DELETE {{host}}/api/courses/1 HTTP/1.1
+content-type: application/json
