@@ -14,5 +14,13 @@ POST {{host}}/api/courses HTTP/1.1
 content-type: application/json
 
 {
-    "name": "sa"
+    "name": "sadc"
+}
+
+###
+PUT {{host}}/api/courses/1 HTTP/1.1
+content-type: application/json
+
+{
+    "name": "sa2"
 }
