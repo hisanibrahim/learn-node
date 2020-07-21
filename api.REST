@@ -14,5 +14,5 @@ POST {{host}}/api/courses HTTP/1.1
 content-type: application/json
 
 {
-    "name": "sagfh"
+    "name": "sa"
 }
