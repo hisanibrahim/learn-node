@@ -6,6 +6,9 @@ const logger = require("./logger");
 
 const app = express();
 
+console.log(`NODE_ENV: ${process.env.NODE_ENV}`);
+console.log(`NODE_ENV: ${app.get("env")}`);
+
 // express built-in middleware
 app.use(express.json());
 app.use(express.static("public"));
@@ -15,7 +18,11 @@ app.use(logger);
 
 // third-party middleware
 app.use(helmet());
-app.use(morgan("common"));
+
+if (app.get("env") === "development") {
+  app.use(morgan("common"));
+  console.log("Morgan enabled...");
+}
 
 const courses = [
   { id: 1, name: "course1" },
