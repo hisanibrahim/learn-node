@@ -2,12 +2,22 @@ const Joi = require("joi");
 const express = require("express");
 const helmet = require("helmet");
 const morgan = require("morgan");
+const config = require("config");
+
 const logger = require("./logger");
 
 const app = express();
 
-console.log(`NODE_ENV: ${process.env.NODE_ENV}`);
-console.log(`NODE_ENV: ${app.get("env")}`);
+// get config based on NODE_ENV
+console.log(`App Name : ${config.get("name")}`);
+console.log(`Mail : ${config.get("mail.host")}`);
+
+// password stored in env variable
+// created custom-environment-variables.json for maping the same
+// include only keys that store in env_variable
+// like sensitive information
+
+console.log(`Password : ${config.get("mail.password")}`);
 
 // express built-in middleware
 app.use(express.json());
