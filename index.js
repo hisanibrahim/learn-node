@@ -1,8 +1,21 @@
 const Joi = require("joi");
 const express = require("express");
+const helmet = require("helmet");
+const morgan = require("morgan");
+const logger = require("./logger");
+
 const app = express();
 
+// express built-in middleware
 app.use(express.json());
+app.use(express.static("public"));
+
+// user defined middleware
+app.use(logger);
+
+// third-party middleware
+app.use(helmet());
+app.use(morgan("common"));
 
 const courses = [
   { id: 1, name: "course1" },
