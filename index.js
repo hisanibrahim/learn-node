@@ -3,6 +3,8 @@ const express = require("express");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const config = require("config");
+const startupDebugger = require("debug")("app:startup");
+const dbDebugger = require("debug")("app:db");
 
 const logger = require("./logger");
 
@@ -17,7 +19,7 @@ console.log(`Mail : ${config.get("mail.host")}`);
 // include only keys that store in env_variable
 // like sensitive information
 
-console.log(`Password : ${config.get("mail.password")}`);
+// console.log(`Password : ${config.get("mail.password")}`);
 
 // express built-in middleware
 app.use(express.json());
@@ -31,8 +33,18 @@ app.use(helmet());
 
 if (app.get("env") === "development") {
   app.use(morgan("common"));
-  console.log("Morgan enabled...");
+
+  // set DEBUG=app:startup
+  // set DEBUG=app:startup,app:db
+  // set DEBUG=app:*
+
+  startupDebugger("Morgan enabled...");
+  // console.log();
 }
+
+// some db code
+
+dbDebugger("Connected to Database");
 
 const courses = [
   { id: 1, name: "course1" },
