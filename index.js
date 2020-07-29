@@ -10,6 +10,9 @@ const logger = require("./logger");
 
 const app = express();
 
+app.set("view engine", "pug");
+app.set("views", "./views"); // default
+
 // get config based on NODE_ENV
 console.log(`App Name : ${config.get("name")}`);
 console.log(`Mail : ${config.get("mail.host")}`);
@@ -53,7 +56,7 @@ const courses = [
 ];
 
 app.get("/", (req, res) => {
-  res.send("Welcome");
+  res.render("index", { title: "Express App", message: "Welcome to my App" });
 });
 
 app.get("/api/courses", (req, res) => {
